@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 248 250 252;
+    --on-background: 15 23 42;
+    
+    --surface: 255 255 255;
+    --on-surface: 30 41 59;
+    --on-surface-variant: 100 116 139;
+    
+    --primary: 79 70 229;
+    --primary-hover: 67 56 202;
+    --on-primary: 255 255 255;
+    
+    --error: 239 68 68;
+    --success: 34 197 94;
+    --warning: 245 158 11;
+    
+    --outline: 226 232 240;
+  }
+  
+  body {
+    background-color: rgb(var(--background));
+    color: rgb(var(--on-background));
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer components {
+  .min-card {
+    @apply bg-white rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] border border-[rgba(226,232,240,0.5)] transition-all duration-300;
+  }
+  
+  .min-card:hover {
+    @apply shadow-[0_8px_30px_rgb(0,0,0,0.04)] -translate-y-1;
+  }
+
+  .min-btn-primary {
+    @apply px-6 py-2.5 bg-[#4f46e5] text-white rounded-xl font-medium tracking-wide shadow-sm hover:bg-[#4338ca] hover:shadow-md active:scale-95 transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .min-btn-outline {
+    @apply px-6 py-2.5 bg-transparent text-[#4f46e5] border border-[#4f46e5] rounded-xl font-medium tracking-wide hover:bg-[#4f46e5]/5 active:scale-95 transition-all duration-200 disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .min-input {
+    @apply w-full bg-[#f8fafc] border border-[#e2e8f0] text-[#1e293b] text-sm rounded-xl focus:ring-2 focus:ring-[#4f46e5]/20 focus:border-[#4f46e5] block p-3 transition-all duration-200 outline-none;
+  }
+
+  .badge-success {
+    @apply bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-green-100;
+  }
+  .badge-warning {
+    @apply bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-amber-100;
+  }
+  .badge-error {
+    @apply bg-red-50 text-red-700 px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-red-100;
+  }
+  .badge-info {
+    @apply bg-indigo-50 text-indigo-700 px-3 py-1 rounded-full text-xs font-semibold tracking-wide border border-indigo-100;
+  }
+}
