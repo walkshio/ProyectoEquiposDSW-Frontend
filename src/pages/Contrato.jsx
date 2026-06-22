@@ -15,7 +15,7 @@ export default function Contrato() {
     const loggedUser = JSON.parse(userStr);
     const fetchPrestamo = async () => {
       try {
-        const response = await fetch(`https://localhost:7124/api/prestamos/${id}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/prestamos/${id}`, {
           headers: {
             'X-Usuario-ID': loggedUser.usuarioID.toString(),
             'X-Usuario-Nombre': loggedUser.nombre,

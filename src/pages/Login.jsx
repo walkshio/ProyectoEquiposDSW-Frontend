@@ -35,7 +35,7 @@ export default function Login() {
     setError('');
     setLoading(true);
     try {
-      const response = await fetch('https://localhost:7124/api/auth/login', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
@@ -54,7 +54,7 @@ export default function Login() {
     }
   };
   const handleGoogleLogin = () => {
-    window.location.href = 'https://localhost:7124/Login/LoginExterno/Google';
+    window.location.href = `${import.meta.env.VITE_API_URL}/Login/LoginExterno/Google`;
   };
   return (
     <div className="bg-[#f8fafc] text-[#0f172a] min-h-screen flex items-center justify-center p-6 antialiased">

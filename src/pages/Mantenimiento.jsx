@@ -35,7 +35,7 @@ export default function Mantenimiento() {
         'X-Usuario-Nombre': userObj.nombre,
         'X-Usuario-Rol': userObj.rol
       };
-      const response = await fetch('https://localhost:7124/api/mantenimiento', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/mantenimiento`, {
         credentials: 'include', headers
       });
       if (!response.ok) {
@@ -68,7 +68,7 @@ export default function Mantenimiento() {
     e.preventDefault();
     setCompletarLoading(true);
     try {
-      const response = await fetch(`https://localhost:7124/api/mantenimiento/completar/${selectedMaint.mantenimientoID}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/mantenimiento/completar/${selectedMaint.mantenimientoID}`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',

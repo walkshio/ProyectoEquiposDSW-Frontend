@@ -17,8 +17,8 @@ export default function Historial() {
         'X-Usuario-Rol': userObj.rol
       };
       const endpoint = userObj.rol === 'Administrador' 
-        ? 'https://localhost:7124/api/prestamos/todos' 
-        : `https://localhost:7124/api/prestamos/usuario`;
+        ? `${import.meta.env.VITE_API_URL}/api/prestamos/todos` 
+        : `${import.meta.env.VITE_API_URL}/api/prestamos/usuario`;
       const response = await fetch(endpoint, { credentials: 'include', headers });
       if (!response.ok) throw new Error('Error al cargar el historial');
       const data = await response.json();
@@ -46,7 +46,7 @@ export default function Historial() {
   const handleConfirmarEntrega = async (id) => {
     if (!window.confirm('¿Está seguro de confirmar que ha recibido el equipo?')) return;
     try {
-      const response = await fetch(`https://localhost:7124/api/prestamos/confirmar-entrega/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/prestamos/confirmar-entrega/${id}`, {
         method: 'POST',
         headers: {
           'X-Usuario-ID': usuario.usuarioID.toString(),

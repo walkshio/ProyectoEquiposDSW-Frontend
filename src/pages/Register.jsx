@@ -14,7 +14,7 @@ export default function Register() {
     setSuccess('');
     setLoading(true);
     try {
-      const response = await fetch('https://localhost:7124/api/auth/register', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/register`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ nombre, correo, contrasena, rol: 'Usuario' })
@@ -34,7 +34,7 @@ export default function Register() {
     }
   };
   const handleGoogleLogin = () => {
-    window.location.href = 'https://localhost:7124/Login/LoginExterno/Google';
+    window.location.href = `${import.meta.env.VITE_API_URL}/Login/LoginExterno/Google`;
   };
   return (
     <div className="bg-[#f8fafc] text-[#0f172a] min-h-screen flex items-center justify-center p-6 antialiased">

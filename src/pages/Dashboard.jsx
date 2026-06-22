@@ -24,7 +24,7 @@ export default function Dashboard() {
         'X-Usuario-Nombre': userObj.nombre,
         'X-Usuario-Rol': userObj.rol
       };
-      const response = await fetch('https://localhost:7124/api/equipos/dashboard', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/equipos/dashboard`, {
         credentials: 'include', headers
       });
       if (!response.ok) throw new Error('Error al cargar datos del panel de administración');

@@ -24,7 +24,7 @@ export default function Catalogo() {
     setLoading(true);
     setError('');
     try {
-      const url = `https://localhost:7124/api/equipos?tipoEquipo=${categoryName === 'Todos' ? '' : categoryName}`;
+      const url = `${import.meta.env.VITE_API_URL}/api/equipos?tipoEquipo=${categoryName === 'Todos' ? '' : categoryName}`;
       const headers = usuario ? {
         'X-Usuario-ID': usuario.usuarioID.toString(),
         'X-Usuario-Nombre': usuario.nombre,
@@ -42,7 +42,7 @@ export default function Catalogo() {
   };
   async function fetchCategorias() {
     try {
-      const response = await fetch('https://localhost:7124/api/equipos/categorias', { credentials: 'include' });
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/equipos/categorias`, { credentials: 'include' });
       if (!response.ok) throw new Error('Error al cargar categorías');
       const data = await response.json();
       setCategorias(data || []);
@@ -86,7 +86,7 @@ export default function Catalogo() {
     setModalSuccess('');
     setModalLoading(true);
     try {
-      const response = await fetch('https://localhost:7124/api/prestamos/solicitar', {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/prestamos/solicitar`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ export default function Catalogo() {
       if (imagenArchivo) {
         form.append('imagenArchivo', imagenArchivo);
       }
-      const url = equipoEdit ? `https://localhost:7124/api/equipos/${equipoEdit.equipoID}` : 'https://localhost:7124/api/equipos';
+      const url = equipoEdit ? `${import.meta.env.VITE_API_URL}/api/equipos/${equipoEdit.equipoID}` : `${import.meta.env.VITE_API_URL}/api/equipos`;
       const method = equipoEdit ? 'PUT' : 'POST';
       const response = await fetch(url, {
         method,
@@ -169,7 +169,7 @@ export default function Catalogo() {
   const handleEliminar = async (id) => {
     if (!window.confirm('¿Está seguro de eliminar este equipo?')) return;
     try {
-      const response = await fetch(`https://localhost:7124/api/equipos/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/equipos/${id}`, {
         method: 'DELETE',
         headers: {
           'X-Usuario-ID': usuario.usuarioID.toString(),
@@ -365,7 +365,7 @@ export default function Catalogo() {
                       <img
                         alt={equipo.nombre}
                         className={`w-full h-full object-contain transition-transform duration-500 ${isAvailable && 'group-hover:scale-110'}`}
-                        src={equipo.imagen ? (equipo.imagen.startsWith('/') ? `https://localhost:7124${equipo.imagen}` : equipo.imagen) : ''}
+                        src={equipo.imagen ? (equipo.imagen.startsWith('/') ? `${import.meta.env.VITE_API_URL}${equipo.imagen}` : equipo.imagen) : ''}
                       />
                     ) : (
                       <span className="material-symbols-outlined text-6xl text-[#cbd5e1]">computer</span>

@@ -28,11 +28,11 @@ export default function Aprobaciones() {
         'X-Usuario-Nombre': userObj.nombre,
         'X-Usuario-Rol': userObj.rol
       };
-      const resPend = await fetch('https://localhost:7124/api/prestamos/pendientes', { credentials: 'include', headers });
+      const resPend = await fetch(`${import.meta.env.VITE_API_URL}/api/prestamos/pendientes`, { credentials: 'include', headers });
       if (!resPend.ok) throw new Error('Error al cargar solicitudes pendientes');
       const dataPend = await resPend.json();
       setPendientes(dataPend || []);
-      const resAct = await fetch('https://localhost:7124/api/prestamos/en-uso', { credentials: 'include', headers });
+      const resAct = await fetch(`${import.meta.env.VITE_API_URL}/api/prestamos/en-uso`, { credentials: 'include', headers });
       if (!resAct.ok) throw new Error('Error al cargar préstamos activos');
       const dataAct = await resAct.json();
       setActivos(dataAct || []);
@@ -63,7 +63,7 @@ export default function Aprobaciones() {
   const handleApprove = async (id) => {
     if (!window.confirm('¿Está seguro de aprobar esta solicitud?')) return;
     try {
-      const response = await fetch(`https://localhost:7124/api/prestamos/aprobar/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/prestamos/aprobar/${id}`, {
         method: 'POST',
         headers: {
           'X-Usuario-ID': usuario.usuarioID.toString(),
@@ -91,7 +91,7 @@ export default function Aprobaciones() {
     setDeclineLoading(true);
     const motivoFinal = notasAdicionales ? `${motivoRechazo}: ${notasAdicionales}` : motivoRechazo;
     try {
-      const response = await fetch(`https://localhost:7124/api/prestamos/rechazar/${selectedLoan.prestamoID}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/prestamos/rechazar/${selectedLoan.prestamoID}`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
@@ -116,7 +116,7 @@ export default function Aprobaciones() {
   const handleDeliver = async (id) => {
     if (!window.confirm('¿Está seguro de registrar la entrega física de este equipo?')) return;
     try {
-      const response = await fetch(`https://localhost:7124/api/prestamos/entregar/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/prestamos/entregar/${id}`, {
         method: 'POST',
         headers: {
           'X-Usuario-ID': usuario.usuarioID.toString(),
@@ -146,7 +146,7 @@ export default function Aprobaciones() {
     setReturnLoading(true);
     const notaFinal = incidencia ? `${condicion}: ${incidencia}` : condicion;
     try {
-      const response = await fetch(`https://localhost:7124/api/prestamos/devolver/${selectedLoan.prestamoID}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/prestamos/devolver/${selectedLoan.prestamoID}`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
